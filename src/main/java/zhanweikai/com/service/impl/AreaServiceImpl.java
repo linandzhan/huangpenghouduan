@@ -9,7 +9,9 @@ import zhanweikai.com.dao.OrdersMapper;
 import zhanweikai.com.dao.PeriodMapper;
 import zhanweikai.com.pojo.*;
 import zhanweikai.com.service.AreaService;
+import zhanweikai.com.service.EmployeeService;
 import zhanweikai.com.service.UserService;
+import zhanweikai.com.vo.AreaSaveDTO;
 import zhanweikai.com.vo.AreaSearchResultDTO;
 import zhanweikai.com.vo.ListVo;
 
@@ -30,6 +32,8 @@ public class AreaServiceImpl implements AreaService {
     private PeriodMapper periodMapper;
     @Resource
     private UserService userService;
+    @Resource
+    private EmployeeService employeeService;
 
     public Area attach(Area area) {
         return areaMapper.selectByPrimaryKey(area.getAreaId());
@@ -64,6 +68,31 @@ public class AreaServiceImpl implements AreaService {
 //        listVo.setItems(list);
 //        listVo.setTotal(total);
         return RestResult.success("查询成功",listVo);
+    }
+
+    @Override
+    public RestResult saveArea(String number, String type) {
+        Area old = areaMapper.selectByNumber(number);
+        if(old != null) {
+            return RestResult.error("该场地已存在");
+        }
+
+        AreaSaveDTO area = new AreaSaveDTO();
+        area.setType(type);
+        area.setNumber(number);
+        if("small".equals(type)) {
+            area.setRentalPrice(80d);
+        }else if ("standard".equals(type)) {
+            area.setRentalPrice(100d);
+        }
+
+        area.setEmployeeId(employeeService.getAccount().getId().toString());
+
+        int result = areaMapper.save(area);
+        if(result > 0) {
+            return RestResult.success("添加成功");
+        }
+        return RestResult.error("添加失败");
     }
 
 

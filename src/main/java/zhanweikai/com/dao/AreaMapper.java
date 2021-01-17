@@ -3,6 +3,7 @@ package zhanweikai.com.dao;
 import org.apache.ibatis.annotations.Mapper;
 import zhanweikai.com.pojo.Area;
 import zhanweikai.com.pojo.Employee;
+import zhanweikai.com.vo.AreaSaveDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -17,4 +18,7 @@ public interface AreaMapper {
 
     Long count(Map map);
 
+    int save(AreaSaveDTO area);
+
+    Area selectByNumber(String number);
 }

@@ -22,6 +22,7 @@ import zhanweikai.com.vo.AreaSearchResultDTO;
 import zhanweikai.com.vo.SearchAreaIsSpareDTO;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -90,6 +91,19 @@ public class AreaController {
         String number = (String) searchInfo.get("number");
 
         return areaService.searchArea(number,page,size);
+    }
+
+
+    @ApiOperation(value = "场地添加")
+    @ApiImplicitParam(name = "", value = "测试id")
+    @PostMapping("/api/area/save")
+    public RestResult save(@RequestBody JSONObject jsonObject, HttpServletRequest http ){
+
+        LinkedHashMap areaInfo = (LinkedHashMap) jsonObject.get("areaInfo");
+        String number = (String) areaInfo.get("number");
+        String type = (String) areaInfo.get("type");
+        String id = http.getSession().getId();
+        return areaService.saveArea(number,type);
     }
 
 }

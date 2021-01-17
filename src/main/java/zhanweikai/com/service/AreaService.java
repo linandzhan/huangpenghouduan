@@ -16,4 +16,6 @@ public interface AreaService {
     Area getArea(Long areaId);
 
     RestResult searchArea(String number, Integer page, Integer size);
+
+    RestResult saveArea(String number, String type);
 }

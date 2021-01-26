@@ -31,4 +31,6 @@ public interface EmployeeService {
     Set<String> findRoleByEmployee(Long id);
 
     Employee getAccount();
+
+    void reSetPassword(Integer id, String password);
 }

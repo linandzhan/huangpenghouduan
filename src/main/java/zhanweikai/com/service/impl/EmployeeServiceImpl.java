@@ -35,6 +35,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    @Override
+    public void reSetPassword(Integer id, String password) {
+        Employee employee = new Employee();
+        employee.setId(Long.parseLong(id.toString()));
+        employee.setPassword(password);
+        employeeMapper.updateByPrimaryKeySelective(employee);
+    }
 
 
     @Override

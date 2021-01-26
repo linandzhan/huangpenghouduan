@@ -1,5 +1,6 @@
 package zhanweikai.com.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -104,6 +105,21 @@ public class EmployeeController {
             return  RestResult.success("已禁用");
         }
         return RestResult.error(400,"禁用失败");
+    }
+
+
+
+    @ApiOperation(value = "密码修改")
+    @ApiImplicitParam(name = "longMap", value = "员工id")
+    @PostMapping("/api/employee/updatePassword")
+    public RestResult updatePassword(@RequestBody JSONObject jsonObject) {
+
+        String password = (String) jsonObject.get("password");
+        Integer id = jsonObject.getInteger("id");
+
+        employeeService.reSetPassword(id,password);
+
+        return null;
     }
 
 

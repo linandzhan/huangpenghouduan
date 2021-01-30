@@ -119,7 +119,7 @@ public class EmployeeController {
 
         employeeService.reSetPassword(id,password);
 
-        return null;
+        return RestResult.success("修改成功");
     }
 
 

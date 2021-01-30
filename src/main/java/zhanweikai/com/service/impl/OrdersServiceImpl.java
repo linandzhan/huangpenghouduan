@@ -62,6 +62,9 @@ public class OrdersServiceImpl implements OrdersService {
                 orderInfo.setPaymentAmount(orderInfo.getAreaAmont() * 0.7);
             }
             User attachUser = userService.attach(user);
+            if(attachUser.getBalance()-orderInfo.getPaymentAmount() < 0) {
+                return RestResult.error("该客户的余额不足以扣此次包场的费用");
+            }
             attachUser.setBalance(attachUser.getBalance() - orderInfo.getPaymentAmount());
             userMapper.updateByPrimaryKeySelective(attachUser);  //扣除相应的余额
         }

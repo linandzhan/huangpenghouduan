@@ -68,4 +68,36 @@
         </where>
     </select>
 
+    <insert id="save" parameterType="zhanweikai.com.pojo.Area">
+        insert into area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="number != null">
+            number,
+        </if>
+        <if test="rentalPrice != null">
+            rental_price,
+        </if>
+        <if test="employeeId != null">
+            employee_id,
+        </if>
+        <if test="type != null">
+            type,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="number != null">
+            #{number},
+        </if>
+        <if test="rentalPrice != null">
+            #{rentalPrice},
+        </if>
+        <if test="employeeId != null">
+            #{employeeId},
+        </if>
+        <if test="type != null">
+            #{type},
+        </if>
+        </trim>
+    </insert>
+
 </mapper>

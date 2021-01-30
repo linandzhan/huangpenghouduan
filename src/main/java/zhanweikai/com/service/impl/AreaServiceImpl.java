@@ -72,10 +72,10 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public RestResult saveArea(String number, String type) {
-        Area old = areaMapper.selectByNumber(number);
-        if(old != null) {
-            return RestResult.error("该场地已存在");
-        }
+//        Area old = areaMapper.selectByNumber(number);
+//        if(old != null) {
+//            return RestResult.error("该场地已存在");
+//        }
 
         AreaSaveDTO area = new AreaSaveDTO();
         area.setType(type);
@@ -88,11 +88,9 @@ public class AreaServiceImpl implements AreaService {
 
         area.setEmployeeId(employeeService.getAccount().getId().toString());
 
-        int result = areaMapper.save(area);
-        if(result > 0) {
-            return RestResult.success("添加成功");
-        }
-        return RestResult.error("添加失败");
+        areaMapper.save(area);
+
+        return RestResult.success("添加成功");
     }
 
 

@@ -18,7 +18,7 @@ public interface AreaMapper {
 
     Long count(Map map);
 
-    int save(AreaSaveDTO area);
+    void save(AreaSaveDTO area);
 
     Area selectByNumber(String number);
 }

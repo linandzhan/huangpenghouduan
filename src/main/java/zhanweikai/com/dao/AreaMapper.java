@@ -21,4 +21,8 @@ public interface AreaMapper {
     void save(AreaSaveDTO area);
 
     Area selectByNumber(String number);
+
+    void delete(long id);
+
+    Long findByNumber(String number);
 }

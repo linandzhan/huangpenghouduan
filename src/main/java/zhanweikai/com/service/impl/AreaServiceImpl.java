@@ -93,6 +93,11 @@ public class AreaServiceImpl implements AreaService {
         return RestResult.success("添加成功");
     }
 
+    @Override
+    public void delete(long id) {
+        areaMapper.delete(id);
+    }
+
 
     @Override
     public Area findById(Long id) {

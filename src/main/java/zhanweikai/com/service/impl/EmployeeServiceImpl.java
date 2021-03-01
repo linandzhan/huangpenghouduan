@@ -12,6 +12,7 @@ import zhanweikai.com.dao.EmployeeMapper;
 import zhanweikai.com.pojo.Employee;
 import zhanweikai.com.pojo.Role;
 import zhanweikai.com.service.EmployeeService;
+import zhanweikai.com.vo.EmployeeDTO;
 import zhanweikai.com.vo.EmployeeInfo;
 import zhanweikai.com.vo.EmployeeQuery;
 import zhanweikai.com.vo.ListVo;
@@ -41,6 +42,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setId(Long.parseLong(id.toString()));
         employee.setPassword(password);
         employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public void update(EmployeeDTO employeeDTO) {
+        employeeMapper.update(employeeDTO);
     }
 
 

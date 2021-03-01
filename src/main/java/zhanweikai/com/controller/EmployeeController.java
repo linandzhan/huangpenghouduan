@@ -12,6 +12,7 @@ import zhanweikai.com.annotation.RequiredPermission;
 import zhanweikai.com.common.RestResult;
 import zhanweikai.com.pojo.Employee;
 import zhanweikai.com.service.EmployeeService;
+import zhanweikai.com.vo.EmployeeDTO;
 import zhanweikai.com.vo.EmployeeInfo;
 import zhanweikai.com.vo.EmployeeQuery;
 
@@ -120,6 +121,22 @@ public class EmployeeController {
         employeeService.reSetPassword(id,password);
 
         return RestResult.success("修改成功");
+    }
+
+    @ApiOperation(value = "获取单个employee信息")
+    @ApiImplicitParam(name = "id", value = "员工id")
+    @PostMapping("/api/employee/get")
+    public RestResult get(@RequestBody JSONObject jsonObject) {
+        Integer id = (Integer) jsonObject.get("id");
+        Employee employee = employeeService.get(Long.parseLong(id.toString()));
+        return RestResult.success(employee);
+    }
+
+    @PostMapping("/api/employee/update")
+    public RestResult update(@RequestBody Map<String, EmployeeDTO> employeeDTOMap) {
+        EmployeeDTO employeeDTO = employeeDTOMap.get("manager");
+        employeeService.update(employeeDTO);
+        return RestResult.success("编辑成功");
     }
 
 

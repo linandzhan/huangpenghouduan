@@ -29,4 +29,8 @@ public interface OrdersMapper {
     Long countOrdersByTime(LocalDateTime startTime, LocalDateTime endTime);
 
     Double countAmountByTime(LocalDateTime startTime, LocalDateTime endTime);
+
+    void delete(Long areaId, Long periodId, LocalDate playDay);
+
+    Orders selectOrder(Long areaId, Long periodId, LocalDate playDay);
 }

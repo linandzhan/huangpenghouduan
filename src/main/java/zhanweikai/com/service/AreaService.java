@@ -18,4 +18,7 @@ public interface AreaService {
     RestResult searchArea(String number, Integer page, Integer size);
 
     RestResult saveArea(String number, String type);
+
+    void delete(long parseLong);
+
 }

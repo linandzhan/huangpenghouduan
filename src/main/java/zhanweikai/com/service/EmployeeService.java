@@ -3,6 +3,7 @@ package zhanweikai.com.service;
 import zhanweikai.com.common.RestResult;
 import zhanweikai.com.pojo.Employee;
 import zhanweikai.com.pojo.Role;
+import zhanweikai.com.vo.EmployeeDTO;
 import zhanweikai.com.vo.EmployeeInfo;
 import zhanweikai.com.vo.EmployeeQuery;
 
@@ -33,4 +34,6 @@ public interface EmployeeService {
     Employee getAccount();
 
     void reSetPassword(Integer id, String password);
+
+    void update(EmployeeDTO employeeDTO);
 }

@@ -100,4 +100,12 @@
         </trim>
     </insert>
 
+    <delete id="delete">
+        delete from area where area_id = #{id}
+    </delete>
+
+    <select id="findByNumber" resultType="long">
+        select area_id from area where number = #{number}
+    </select>
+
 </mapper>

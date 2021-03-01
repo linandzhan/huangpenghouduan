@@ -3,6 +3,7 @@ package zhanweikai.com.dao;
 import org.apache.ibatis.annotations.Mapper;
 import zhanweikai.com.pojo.Employee;
 import zhanweikai.com.pojo.Role;
+import zhanweikai.com.vo.EmployeeDTO;
 import zhanweikai.com.vo.EmployeeInfo;
 import zhanweikai.com.vo.EmployeeQuery;
 
@@ -36,4 +37,6 @@ public interface EmployeeMapper {
     Employee getByPrimaryKey(Long id);
 
     Set<String> findRoleByEmployee(Long id);
+
+    void update(EmployeeDTO employeeDTO);
 }

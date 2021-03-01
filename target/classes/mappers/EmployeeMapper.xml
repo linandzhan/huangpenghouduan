@@ -225,4 +225,18 @@
       #{image,jdbcType=VARCHAR})
   </insert>
 
+
+  <update id="update" parameterType="zhanweikai.com.vo.EmployeeDTO">
+    update employee
+    <set>
+      <if test="username != null">
+        username = #{username},
+      </if>
+      <if test="phone != null">
+        phone = #{phone},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
 </mapper>

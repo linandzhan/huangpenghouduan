@@ -98,6 +98,11 @@
         select order_id,phone,area_id,employee_id,create_time,play_day,period_id from orders
     </select>
 
+
+    <select id="selectOrder" resultMap="ordersMap">
+        select * from orders where area_id = #{areaId} and period_id = #{periodId} and play_day = #{playDay}
+    </select>
+
     <select id="countOrders" resultType="java.lang.Long">
         select count(*) from orders
     </select>
@@ -178,5 +183,10 @@
             </if>
         </trim>
     </insert>
+
+
+    <delete id="delete">
+        delete from orders where area_id = #{areaId} and period_id = #{periodId} and play_day = #{playDay}
+    </delete>
 
 </mapper>

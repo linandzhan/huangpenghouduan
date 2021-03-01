@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -105,5 +106,15 @@ public class AreaController {
         String id = http.getSession().getId();
         return areaService.saveArea(number,type);
     }
+
+    @PostMapping("/api/area/delete")
+    public RestResult delete(@RequestBody JSONObject jsonObject) {
+        Integer id = (Integer) jsonObject.get("id");
+        areaService.delete(Long.parseLong(id.toString()));
+       return RestResult.success("删除成功");
+    }
+
+
+
 
 }

@@ -110,7 +110,11 @@ public class AreaController {
     @PostMapping("/api/area/delete")
     public RestResult delete(@RequestBody JSONObject jsonObject) {
         Integer id = (Integer) jsonObject.get("id");
-        areaService.delete(Long.parseLong(id.toString()));
+        try{
+            areaService.delete(Long.parseLong(id.toString()));
+        }catch (Exception e) {
+            return RestResult.error("场地有人在租用，无法删除");
+        }
        return RestResult.success("删除成功");
     }
 
